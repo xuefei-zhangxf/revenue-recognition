@@ -1,8 +1,11 @@
 package com.sunlands.trade.revenuerecognition.process.config;
 
 import org.apache.commons.dbcp.BasicDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
@@ -17,13 +20,16 @@ import javax.sql.DataSource;
 @Configuration
 public class DBConfig {
 
+    @Autowired
+    Environment env;
+
     @Bean
     public DataSource basicDataSource() {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("${trade.db.url}");
-        dataSource.setUsername("${trade.db.username}");
-        dataSource.setPassword("${trade.db.password}");
+        dataSource.setUrl(env.getProperty("trade.db.url"));
+        dataSource.setUsername(env.getProperty("trade.db.username"));
+        dataSource.setPassword(env.getProperty("trade.db.password"));
         dataSource.setInitialSize(1);
         dataSource.setMaxActive(100);
         dataSource.setMinIdle(5);

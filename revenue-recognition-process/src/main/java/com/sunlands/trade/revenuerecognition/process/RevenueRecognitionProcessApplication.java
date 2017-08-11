@@ -13,7 +13,6 @@ public class RevenueRecognitionProcessApplication implements CommandLineRunner{
 	public RevenueRecognitionProcessApplication(@SuppressWarnings("SpringJavaAutowiringInspection") PromiseMapper promiseMapper) {
 		this.promiseMapper = promiseMapper;
 	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(RevenueRecognitionProcessApplication.class, args);
 	}
